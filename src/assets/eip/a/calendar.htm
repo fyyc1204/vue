@@ -1,0 +1,279 @@
+<html>
+<head>
+<title>日历选单</title>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Language" content="zh-cn">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<link rel=stylesheet href="/erp/html/dzwcss.gui" type="text/css">
+<head>
+<script language="JavaScript">
+
+var dejtca_months = new Array("一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月", "十二月");
+var dejtca_Cmonths = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+var dejtca_daysInMonth = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+var dejtca_displayMonth = new Date().getMonth();
+var dejtca_displayYear = new Date().getFullYear();
+var dejtca_displayDivName;
+var dejtca_displayElement;
+var showCalendar_active = "" ;
+
+var dejtca_yearType;           // 显示型态 E: 西元 C: 自订
+var dejtca_yearDesc = "公元";  // 自订年号
+var dejtca_yearTag  = 0;    // 自订年号差距
+
+function showCalendar(eltName, type, obj) {
+  dejtca_yearType = type;
+  if (obj==null||!obj) {
+  	newCalendar("DEJTCA",document.getElementsByName(eltName)[0]);
+  	showCalendar_active=eltName ;
+  }
+  else {
+  	newCalendar("DEJTCA",obj);
+  	showCalendar_active=obj ;
+  }
+}
+
+function getDays(month, year) {
+  // Test for leap year when February is selected.
+  if (1 == month)
+    return ((0 == year % 4) && (0 != (year % 100))) || (0 == year % 400) ? 29 : 28;
+  else
+    return dejtca_daysInMonth[month];
+}
+
+function getToday() {
+  // Generate today's date.
+  this.now = new Date();
+  this.year = this.now.getFullYear();
+  this.month = this.now.getMonth();
+  this.day = this.now.getDate();
+}
+
+// Start with a calendar for today.
+today = new getToday();
+
+function newCalendar(eltName,attachedElement) { //alert(attachedElement) ;
+  if (attachedElement) {
+    if (dejtca_displayDivName && dejtca_displayDivName != eltName) {
+      dejtca_hideElement(dejtca_displayDivName); }
+    dejtca_displayElement = attachedElement;
+  }
+  dejtca_displayDivName = eltName;
+  today = new getToday();
+  var parseYear = parseInt(dejtca_displayYear + '');
+  var newCal = new Date(parseYear,dejtca_displayMonth,1);
+  var day = -1;
+  var startDayOfWeek = newCal.getDay();
+  if ((today.year == newCal.getFullYear()) && (today.month == newCal.getMonth())) {
+    day = today.day;
+  }
+  var dejtca_daysInMonth = getDays(newCal.getMonth(), newCal.getFullYear());
+  var daysGrid = makeDaysGrid(startDayOfWeek,day,dejtca_daysInMonth,newCal,eltName);
+  if (document.all) {
+    var elt = document.all[eltName];
+    elt.style.display="none" ;
+    elt.innerHTML = daysGrid;
+    if(elt.style.display == 'none') {
+            elt.style.display='';
+          }
+  } else {
+    var elt = document.layers[eltName].document;
+    elt.open();
+    elt.write(daysGrid);
+    elt.close();
+  }
+}
+
+
+function incMonth(delta,eltName) {
+  dejtca_displayMonth += delta;
+  if (dejtca_displayMonth >= 12) {
+    dejtca_displayMonth = 0;
+    incYear(1,eltName);
+  } else if (dejtca_displayMonth <= -1) {
+    dejtca_displayMonth = 11;
+    incYear(-1,eltName);
+  } else {
+    newCalendar(eltName);
+  }
+}
+
+function incYear(delta,eltName) {
+  dejtca_displayYear = parseInt(dejtca_displayYear + '') + delta;
+  newCalendar(eltName);
+}
+
+function keyYear(eltName) {
+        ans = prompt("请输入年份", (dejtca_yearType == 'C') ? dejtca_displayYear - dejtca_yearTag: dejtca_displayYear);
+
+        if(ans == null)
+          ans == dejtca_displayYear;
+        else if(isNaN(parseInt(ans)))
+          alert("无效年份: " + ans);
+        else
+          dejtca_displayYear = ans;
+
+        if (dejtca_yearType == 'C') dejtca_displayYear = parseInt(ans) + dejtca_yearTag;
+  dejtca_displayYear = parseInt(dejtca_displayYear + '');
+  newCalendar(eltName);
+}
+
+function changeType(eltName) {
+  if (dejtca_yearType == 'C')
+    dejtca_yearType = 'E';
+  else
+    dejtca_yearType = 'C';
+  newCalendar(eltName);
+}
+
+function makeDaysGrid(startDay,day,dejtca_daysInMonth,newCal,eltName) {
+  var daysGrid;
+  var month = newCal.getMonth();
+  var year = newCal.getFullYear();
+  var isThisYear = (year == new Date().getFullYear());
+  var isThisMonth = (day > -1);
+  var gmonths = new Array();
+  daysGrid = '<table border=0 width="100%" cellspacing=1 cellpadding=0 bgcolor="#EDEDED">';
+  daysGrid += '<tr bgcolor="#FFFFFF"><td colspan=7 align=center nowrap>';
+  daysGrid += '<a onmouseover="this.className=\'function-bar mouse-hand\'" onmouseout="this.className=\'\'" onclick="incMonth(-1,\'' + eltName + '\')" title="上个月"><img src="/erp/images/eip/a/front.gif" name="上个月" border="0"></a>';
+  daysGrid += '&nbsp;';
+  daysGrid += year + " 年 " + (month+1) + '月';
+  daysGrid += '&nbsp;';
+  daysGrid += '<a onmouseover="this.className=\'function-bar mouse-hand\'" onmouseout="this.className=\'\'" onclick="incMonth(1,\'' + eltName + '\')" title="下个月"><img src="/erp/images/eip/a/last.gif" name="下个月" border="0"></a>';
+  daysGrid += '</td></tr><tr bgcolor="#DBDBDB" align=center><td><font size=2>日</font></td><td><font size=2>一</font></td><td><font size=2>二</font></td><td><font size=2>三</font></td><td><font size=2>四</font></td><td><font size=2>五</font></td><td><font size=2>六</font></td></tr><tr>';
+
+  var dayOfMonthOfFirstSunday = (7 - startDay + 1);
+
+  for (var intWeek = 0; intWeek < 6; intWeek++) {
+    var dayOfMonth;
+    for (var intDay = 0; intDay < 7; intDay++) {
+      dayOfMonth = (intWeek * 7) + intDay + dayOfMonthOfFirstSunday - 7;
+
+      if (intDay == 0 && dayOfMonth > dejtca_daysInMonth) break;
+      if (dayOfMonth <= 0 || dayOfMonth > dejtca_daysInMonth) {
+        if (intDay == 0 || intDay == 6) {
+          daysGrid += "<td bgcolor=#FEE8E7>&nbsp;</td>";
+        } else {
+          daysGrid += "<td bgcolor=#FFFFFF>&nbsp;</td>";
+        }
+      } else if (dayOfMonth <= dejtca_daysInMonth) {
+        var color = "#000000";
+        var dayString = "<font size=2>" + dayOfMonth + "</font></td>";
+
+        if (day > 0 && day == dayOfMonth) {
+          color="red";
+          dayString = "<font size=2><i>" + dayOfMonth + "</i></font></td>";
+        }
+
+        if (intDay == 0 || intDay == 6) {
+          daysGrid += '<td bgcolor=#FEE8E7';
+        } else {
+          daysGrid += '<td bgcolor=#FFFFFF';
+        }
+
+        daysGrid += ' onmouseover="this.className=\'function-bar-left\'"';
+        daysGrid += ' onmouseout="this.className=\'\'"';
+        daysGrid += ' bordercolor="' + color + '"';
+        daysGrid += ' style="text-align:center; color:' + color + '">';
+        daysGrid += dayString;
+      }
+    }
+    if (dayOfMonth < dejtca_daysInMonth) daysGrid += "</tr><tr>";
+  }
+  return daysGrid + "</td></tr></table>";
+}
+
+
+function setDay(day,eltName) {
+        var yy = dejtca_displayYear + "";
+
+        switch(dejtca_yearType) {
+          case 'C':
+            yy = (dejtca_displayYear - dejtca_yearTag) + "";
+            if(yy.length == 2) yy = "0" + yy;
+            if(yy.length == 1) yy = "00" + yy;
+            break;
+          case 'E':
+          default:
+        }
+
+        var mm = (dejtca_displayMonth + 1) + "";
+        if(mm.length == 1) mm = '0' + mm;
+
+        var dd = (day < 10)? "0" + day : "" + day;
+/*
+	for(var i=0;i<dejtca_returnFields.length;i++) {
+		dejtca_returnFields[i].value=yy  + mm + dd;
+	}
+*/
+  returnDatas = new Array(4) ;
+  returnDatas[0] = yy  + mm + dd;
+  returnDatas[1] = yy;
+  returnDatas[2] = mm;
+  returnDatas[3] = dd;
+  window.returnValue = returnDatas ;
+
+  window.close() ;
+}
+
+
+function dejtca_hideElement(eltName) {
+//  document.all(eltName).innerHTML = ' ';
+  document.all(eltName).style.display = 'none';
+//  showElement("SELECT");
+//  showElement("OBJECT");
+//  showElement("IFRAME");
+}
+
+function dejtca_hElement(elmID)
+{
+  for (i = 0; i < document.all.tags(elmID).length; i++)
+  {
+    obj = document.all.tags(elmID)[i];
+    if (! obj || ! obj.offsetParent)
+      continue;
+          if( obj.id == 'DEJTCAM' || obj.id == 'DEJTCAY')
+                  continue;
+    // Find the element's offsetTop and offsetLeft relative to the BODY tag.
+    objLeft   = obj.offsetLeft;
+    objTop    = obj.offsetTop;
+    objWidth  = obj.offsetWidth;
+    objHeight = obj.offsetHeight
+    objParent = obj.offsetParent;
+    while (objParent.tagName.toUpperCase() != "BODY")
+    {
+      objLeft  += objParent.offsetLeft;
+      objTop   += objParent.offsetTop;
+      objParent = objParent.offsetParent;
+    }
+                var xx = window.event.x;
+                var yy = window.event.y;
+                var ww = document.all("DEJTCA").offsetWidth ;
+                var hh = document.all("DEJTCA").offsetHeight;
+
+                if(xx > document.body.clientWidth - ww) xx = document.body.clientWidth - ww;
+                if(xx < 0) xx = 0;
+                if(yy > document.body.clientHeight - hh) yy = document.body.clientHeight - hh;
+                if(yy <0) yy = 0;
+
+    if (objLeft + objWidth > xx && objLeft < xx + ww && objTop + objHeight > yy && objTop < yy + hh)
+      obj.style.visibility = "hidden";
+    else
+      obj.style.visibility = "";
+  }
+}
+
+</script>
+</head>
+<body leftmargin=0 topmargin=0 bgcolor="#EDEDED">
+<input type="hidden" name="dewhca_return" value="">
+<div align=center id=DEJTCA style="text-align:center;width:'100%';background-color:White;display:none;"></div>
+</body>
+</html>
+<script language="JavaScript">
+var winObj = window.dialogArguments ;
+dateType = (winObj) ? winObj.fmt : 'C'
+showCalendar("dewhca_return",dateType) ;
+</script>
