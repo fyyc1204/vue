@@ -8,6 +8,8 @@ import log from '@/components/log/log'
 import charts from '@/components/charts/charts'
 import navigate from '@/components/navigate/navigate'
 import download from '@/components/download/download'
+import manager from '@/components/manager/manager'
+//import Layout from '../views/layout/Layout';
 
 //import routes from './routes';
 
@@ -18,55 +20,91 @@ let  routes= [
     {
       path: '/navigate',
       name: '导航',
+      redirect: '/navigate',
+      icon: 'el-icon-edit',
       component: navigate
     },
     {
       path: '/hello',
       name: 'hello',
+      //redirect: '/hello',
+      icon: 'el-icon-edit',
       component: Hello
     },
     {
       path: '/test',
       name: 'test',
+      //redirect: '/test',
+      icon: 'el-icon-edit',
       component: test
     },
     {
-      path: '/login',
-      name: 'login',
-      component: login,
-      children: [
+      path: '/test',
+      name: 'test',
+      //redirect: '/test',
+      icon: 'el-icon-edit',
+      component: test,
+      children:[
         {
-        path: 'header',
-        name: '头部',
-        component: header
+        path: '/test',
+        name: 'test',
+        //redirect: '/test',
+        icon: 'el-icon-edit',
+        component: test
         },
         {
-          path: 'header',
-          name: '测试2',
-          component: header
+        path: '/test',
+        name: 'test',
+        //redirect: '/test',
+        icon: 'el-icon-edit',
+        component: test
         },
         {
-          path: 'header',
-          name: '测试',
-          component: header
-        }
+          path: '/test',
+          name: 'test',
+          //redirect: '/test',
+          icon: 'el-icon-edit',
+          component: test
+        },
+        {
+          path: '/test',
+          name: 'test',
+          //redirect: '/test',
+          icon: 'el-icon-edit',
+          component: test
+          }  
       ]
+
     },
     {
       path: '/log',
       name: '日志',
+      //redirect: '/log',
+      icon: 'el-icon-edit',
       component: log
     },
     {
       path: '/charts',
       name: '图表',
+      //redirect: '/charts',
+      icon: 'el-icon-edit',
       component: charts
     },
     {
       path: '/download',
       name: '下载',
+      //redirect: '/download',
+      icon: 'el-icon-edit',
       component: download
+    },
+    {
+      path: '/manager',
+      name: '管理',
+      //redirect: '/manager',
+      icon: 'el-icon-edit',
+      component: manager
     }
+
   ]
 
 export default routes;

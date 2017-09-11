@@ -1,0 +1,35 @@
+var express = require('express');
+var router = express.Router();
+var mysql  = require('mysql');
+//数据库参数配置
+var dbConfig = require('../db/DBConfig');
+//配置增 、删、改 、查 的sql语句
+var userSQL = require('../db/Usersql');
+//创建连接池
+var pool = mysql.createPool(dbConfig.mysql);
+
+/* GET users listing. */
+router.get('/', function(req, res, next) { 
+	pool.getConnection(function(err,connection) {
+	  /*connection.connect();
+	  connection.query("USE test"); */
+	  console.log('The ip is: ');
+	  var ip = req.query.ipaddress;
+	  var date = req.query.date;
+	   console.log('The date is: ', ip);
+	  connection.query("SELECT SystemEvents.ReceivedAt,SystemEvents.FromHost,SystemEvents.Priority,SystemEvents.Facility,SystemEvents.SysLogTag,SystemEvents.Message FROM SystemEvents where FromHost='"+ip+ "'", function(err, rows, fields) {
+	  if (err) throw err;   
+	  console.log('The ip is: ', date);
+	  //console.log('The solution is: ', req);
+	  res.json(rows);
+	  res.end();
+	  connection.release(); 
+		});	
+	});
+});
+
+router.post('/posts',function(reg,res){
+	res.send('POST request to the homepage');
+});
+
+module.exports = router;

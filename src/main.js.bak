@@ -7,14 +7,13 @@ import VueRouter from 'vue-router';
 import routes from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-import IconSvg from './components/Icon-svg';// svg 组件
+
 
 
 //Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.use(VueRouter)
-Vue.component('icon-svg', IconSvg)
 
 export const router = new VueRouter({
   routes,

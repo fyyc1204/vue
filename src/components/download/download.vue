@@ -1,10 +1,10 @@
-<template>    
-    <el-menu>    
-        <hamburger></hamburger>
-    </el-menu>    
+<template>       
+        <!--<hamburger></hamburger>-->
+        <div>
+        </div>
 </template>
 <script>
-import Hamburger from '../Hamburger';
+import Hamburger from '../Hamburger/index.vue';
 export default {
     name: 'header',
     data() {

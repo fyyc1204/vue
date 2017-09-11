@@ -48,13 +48,13 @@ export default {
   },
     methods: {
         query() {
-            axios.get('http://localhost:3000/users/',{ params:{ ipaddress:this.ipaddress,date:this.value1}}).then(response=>{
+            axios.get('http://192.168.100.10:3000/users/',{ params:{ ipaddress:this.ipaddress,date:this.value1}}).then(response=>{
                 this.results = response.data;
             })
         }
     },
     mounted() {
-        axios.get('http://localhost:3000/users/hosts').then(response=>{
+        axios.get('http://192.168.100.10:3000/users/hosts').then(response=>{
                 this.hosts = response.data;
             })
     }

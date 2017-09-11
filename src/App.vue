@@ -1,36 +1,40 @@
 <template>
- <section class="db">
-    <headers></headers>
-    <div class="db-body">
+    <!--<headers></headers>-->
+    <div class="app-wrapper" :class="{hideSidebar:!menubar}">
+    <!--
       <aside class="db-menu-wrapper">
           <el-menu class="db-menu-bar"  router >         
             <template v-for="route in $router.options.routes">
               <template v-if="route.children && route.name">
                 <el-submenu :index="route.name">
                   <template slot="title">{{route.name}}</template>
-                  <el-menu-item :index="cRoute.name" v-for="(cRoute ,index) in route.children" :route="cRoute" :key="index">{{cRoute.name}}</el-menu-item>
+                  <el-menu-item :index="cRoute.name" v-for="(cRoute ,index) in route.children" :route="cRoute" :key="index">
+                    <i :class="route.icon"></i>
+                    {{cRoute.name}}</el-menu-item>
                 </el-submenu>
               </template>
               <template v-if="!route.children && route.name">
-                <el-menu-item :index="route.name" :route="route">{{route.name}}</el-menu-item>                 
+                <el-menu-item :index="route.name" :route="route">  <i :class="route.icon"></i> {{route.name}}</el-menu-item>                 
               </template>              
             </template>           
           </el-menu>        
-      </aside> 
+      </aside>
+      -->
+      <menubar  class="sidebar-container"  ></menubar>
        <!-- content start -->
-        <div class="db-content-wrapper">
-          <section class="db-content">
-            <router-view></router-view>
-          </section>
+        <div class="main-container">
+           <sidebar></sidebar>        
+           <router-view></router-view>
         </div>
         <!-- content end -->     
-    </div>
- </section>
-     
+    </div>     
 </template>
 
 <script>
+import sidebar from '@/components/sidebar/sidebar'
+import menubar from '@/components/menubar/menubar'
 import headers from './components/header/header'
+//import test from './components/test/test'
 export default {
   name: app,
   data() {
@@ -40,83 +44,49 @@ export default {
     }
   },
   components: {
-    headers
+    headers,
+    sidebar,
+    menubar
+  },
+  computed:{
+    menubar() {
+      return this.$store.state.adminleftnavnum;
+    }
   }
 }
 </script>
-
-
-<style lang="scss">
-@import './styles/_variables.scss';
-.db {
-  .el-dropdown-menu {
-    margin-top: 20px;
-  }
-  // header
-  .db-header {
-    width: 100%;
-    height: 60px;
-    background: #20A0FF;
-    padding: 13px 20px;
-    box-sizing: border-box;
-    color: #ffffff;
-    z-index: 99;
-    position: fixed;
-    left: 0;
-    top: 0;
-
-    .logo{
-      font-size: 2.4rem;
+<style rel="stylesheet/scss"  lang="scss" scoped>
+@import "src/styles/mixin.scss";
+.app-wrapper {
+		@include clearfix;
+		position: relative;
+		height: 100%;
+		width: 100%;
+		&.hideSidebar {
+			.sidebar-container{
+				width:46px;
+				overflow: inherit;
+			}
+			.main-container {
+				margin-left: 46px;
+			}
+		}
+		.sidebar-container {
+			transition: width 0.28s ease-out;
+			width: 180px;
+			height: 100%;
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 1001;
+			overflow-y: auto;
+ 			&::-webkit-scrollbar {display:none}
+		}
+		.main-container {
+			min-height: 100%;
+			transition: margin-left 0.28s ease-out;
+			margin-left: 180px;
     }
-
-    .user-info {
-      float: right;
-
-      img {
-        width: 25px;
-        height: 25px;
-        vertical-align: -7px;
-        margin: 0 0 0 10px;
-        cursor: pointer;
-      }
-    }
-  }
-
-  // body
-  .db-body {
-
-    // menu
-    .db-menu-wrapper {
-      position: fixed;
-      left: 0;
-      top: 60px;
-      background: red;
-      height: 100%;
-      overflow: auto;
-      z-index: 98;
-
-      .db-menu-bar {
-        height: 100%;
-        flex-grow: 0;
-        width: 200px;
-      }
-    }
-
-    // content
-    .db-content-wrapper {
-      width: 100%;
-      z-index: 97;
-      box-sizing: border-box;
-      padding: 60px 0px 0px 200px;
-
-      .db-content {
-        padding: 25px;
-
-        .db-content-inner {
-          padding: 30px 0px;
-        }
-      }
-    }
-  }
 }
 </style>

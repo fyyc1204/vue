@@ -8,7 +8,7 @@
     <h2>通过GET方法从服务器后台获取数据库数据</h2>
 
 
-    <h2 v-for="result in results"   >  用户名： {{result}}</h2>
+    <h2 v-for="(result,index) in results" :key=index  >  用户名： {{result}}</h2>
     <h2>通过POST方法从服务器后台获取数据</h2>
     <div>{{message}}</div>
       <div>
@@ -49,12 +49,12 @@ export default {
   },
   methods: {
     postClick(){
-      axios.post('http://localhost:3000/users/posts/',{f:'aaa',l:'aa'}).then(response=>{
+      axios.post('http://192.168.100.10:3000/users/posts/',{f:'aaa',l:'aa'}).then(response=>{
       this.message = response.data;
     })
     },
     getclick(){
-      axios.get('http://localhost:3000/users/',{ip:ip,date:date}).then(response=>{
+      axios.get('http://192.168.100.10:3000/users/',{ip:ip,date:date}).then(response=>{
       this.results = response.data;
     })    
     }

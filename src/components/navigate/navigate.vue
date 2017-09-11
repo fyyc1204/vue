@@ -55,24 +55,24 @@ export default {
   },
   methods: {
     test() {
-      axios.get('http://localhost:3000/navigate/').then(response=>{
+      axios.get('http://192.168.100.10:3000/navigate/').then(response=>{
                 this.results = response.data;
          })
     },
     setting() {
-      axios.get('http://localhost:3000/navigate/columnset/' ,{params : { columnset : this.columnset}}).then(response=>{
+      axios.get('http://192.168.100.10:3000/navigate/columnset/' ,{params : { columnset : this.columnset}}).then(response=>{
          this.results = response.data; 
          })
     }
   },
   mounted() {
-    axios.get('http://localhost:3000/navigate/').then(response=>{
+    axios.get('http://192.168.100.10:3000/navigate/').then(response=>{
                 this.results = response.data;
     })
   }
 }
 </script>
-<style>
+<style lang="scss">
   .el-row {
     margin-bottom: 20px;
     &:last-child {
