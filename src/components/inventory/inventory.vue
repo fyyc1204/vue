@@ -23,12 +23,8 @@
     </el-form>
 
     <el-table :data="results">
-        <el-table-column prop="ReceivedAt" label="日期" width="200"></el-table-column>
-        <el-table-column prop="FromHost" label="名称" width="135"></el-table-column>
-        <el-table-column prop="Priority" label="级别" width="80"></el-table-column>
-        <el-table-column prop="Facility" label="优先权" width="80"></el-table-column>
-        <el-table-column prop="SysLogTag" label="来源" width="190"></el-table-column>
-        <el-table-column prop="Message" label="内容" width="500"></el-table-column>
+        <el-table-column prop="id" label="编号" width="200"></el-table-column>
+        <el-table-column prop="name" label="名称" width="135"></el-table-column>
     </el-table>
   </div>
 
@@ -54,8 +50,8 @@ export default {
         }
     },
     mounted() {
-        axios.get('http://192.168.100.10:3000/users/hosts').then(response=>{
-                this.hosts = response.data;
+        axios.get('http://192.168.100.10:3000/inventory').then(response=>{
+                this.results = response.data;
             })
     }
 }

@@ -9,6 +9,10 @@ import charts from '@/components/charts/charts'
 import navigate from '@/components/navigate/navigate'
 import download from '@/components/download/download'
 import manager from '@/components/manager/manager'
+import inventory from '@/components/inventory/inventory'
+import iphelper from '@/components/iphelper/iphelper'
+
+
 //import Layout from '../views/layout/Layout';
 
 //import routes from './routes';
@@ -21,7 +25,7 @@ let  routes= [
       path: '/navigate',
       name: '导航',
       redirect: '/navigate',
-      icon: 'el-icon-edit',
+      icon: 'el-icon-menu',
       component: navigate
     },
     {
@@ -103,7 +107,22 @@ let  routes= [
       //redirect: '/manager',
       icon: 'el-icon-edit',
       component: manager
+    },
+    {
+      path: '/inventory',
+      name: '资产记录',
+      //redirect: '/manager',
+      icon: 'el-icon-document',
+      component: inventory
+    },
+    {
+      path: '/iphelper',
+      name: 'IP地址管理',
+      //redirect: '/manager',
+      icon: 'el-icon-document',
+      component: iphelper
     }
+
 
   ]
 
