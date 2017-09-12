@@ -24,7 +24,6 @@ let  routes= [
     {
       path: '/navigate',
       name: '导航',
-      redirect: '/navigate',
       icon: 'el-icon-menu',
       component: navigate
     },
@@ -39,44 +38,37 @@ let  routes= [
       path: '/test',
       name: 'test',
       //redirect: '/test',
-      icon: 'el-icon-edit',
+      icon: 'el-icon-fa-hand-o-right',
       component: test
     },
     {
-      path: '/test',
-      name: 'test',
+      path: '/inventory',
+      name: '资产管理',
       //redirect: '/test',
-      icon: 'el-icon-edit',
-      component: test,
+      icon: 'el-icon-fa-diamond',
+      component:inventory,
       children:[
         {
-        path: '/test',
-        name: 'test',
+        path: '/inventory',
+        name: '服务器档案管理',
         //redirect: '/test',
         icon: 'el-icon-edit',
-        component: test
-        },
-        {
-        path: '/test',
-        name: 'test',
-        //redirect: '/test',
-        icon: 'el-icon-edit',
-        component: test
+        component: inventory
         },
         {
           path: '/test',
-          name: 'test',
+          name: 'ip地址管理',
           //redirect: '/test',
-          icon: 'el-icon-edit',
+          icon: 'el-icon-document',
           component: test
         },
         {
           path: '/test',
-          name: 'test',
+          name: '密码管理',
           //redirect: '/test',
-          icon: 'el-icon-edit',
+          icon: 'el-icon-document',
           component: test
-          }  
+        }
       ]
 
     },
@@ -109,21 +101,12 @@ let  routes= [
       component: manager
     },
     {
-      path: '/inventory',
-      name: '资产记录',
-      //redirect: '/manager',
-      icon: 'el-icon-document',
-      component: inventory
-    },
-    {
       path: '/iphelper',
       name: 'IP地址管理',
-      //redirect: '/manager',
+      //redirect: '/test',
       icon: 'el-icon-document',
       component: iphelper
     }
-
-
   ]
 
 export default routes;

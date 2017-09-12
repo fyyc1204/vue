@@ -3,7 +3,7 @@
             <template v-for="route in $router.options.routes">
               <template v-if="route.children && route.name">
                 <el-submenu :index="route.name">
-                  <template slot="title">{{route.name}}</template>
+                  <template slot="title" >  <i class="el-icon-fa-hand-o-right"></i> {{route.name}}   </template>
                   <el-menu-item :index="cRoute.name" v-for="(cRoute ,index) in route.children" :route="cRoute" :key="index">
                     <i :class="route.icon"></i>
                     {{cRoute.name}}</el-menu-item>

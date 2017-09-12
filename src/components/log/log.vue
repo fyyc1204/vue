@@ -22,7 +22,7 @@
 
     </el-form>
 
-    <el-table :data="results">
+    <el-table :data="results" height="510">
         <el-table-column prop="ReceivedAt" label="日期" width="200"></el-table-column>
         <el-table-column prop="FromHost" label="名称" width="135"></el-table-column>
         <el-table-column prop="Priority" label="级别" width="80"></el-table-column>

@@ -1,5 +1,12 @@
 <template>
-<span>空行</span>
+<div>
+    <span icon="fa-window-restore"></span>
+    
+
+    <el-input icon="fa-hand-o-right fa-5x" />
+    <i class="el-icon-fa-hand-o-right fa-2x"></i>
+    <el-input icon="fa-address-book" style="width: 200px"></el-input>
+</div>
 </template>
 <script> 
 
