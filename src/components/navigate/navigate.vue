@@ -38,6 +38,10 @@
         </el-card>       
       </el-col>
     </el-row>
+
+    <el-dialog>
+
+    </el-dialog>
   </div>
 </template>
 
@@ -95,8 +99,14 @@ export default {
 <style lang="scss">
 
 .nagigate {
-  padding-top: 10px;
+  //padding-top: 10px;
   //padding-left: 10px;
+  //padding-right: 10px;
+  //padding-bottom: 10px;  
+  padding: 8px 8px 8px 8px;
+  //height:500px;
+  //overflow-y: auto;
+  //&::-webkit-scrollbar {display:none}
   .search {
     height: 45px;
   }

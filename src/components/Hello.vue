@@ -1,5 +1,17 @@
 <template>
   <div class="hello">
+
+    <a href="http://192.168.10.6">erp</a>
+    <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+    
+    <el-dialog title="提示" :visible.sync="dialogVisible" size="tiny" >
+      <span>这是一段信息</span>
+      <span slot="footer" class="dialog-footer">
+      <el-button @click="dialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
 
@@ -8,7 +20,7 @@
     <h2>通过GET方法从服务器后台获取数据库数据</h2>
 
 
-    <h2 v-for="(result,index) in results" :key=index  >  用户名： {{result}}</h2>
+    <h2 v-for="(result,index) in results" v-bind:key="index"  >  用户名： {{result}}</h2>
     <h2>通过POST方法从服务器后台获取数据</h2>
     <div>{{message}}</div>
       <div>
@@ -44,7 +56,8 @@ export default {
       results: [],
       message: 'post test',
       ip: '',
-      date: ''
+      date: '',
+      dialogVisible: false
     }
   },
   methods: {
@@ -83,5 +96,9 @@ li {
 
 a {
   color: #42b983;
+}
+
+a:hover {
+  background-color: yellow;
 }
 </style>

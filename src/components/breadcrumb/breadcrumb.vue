@@ -1,5 +1,5 @@
 <template>
-	<el-menu class="sidebar">
+	<el-menu>
 			<el-breadcrumb  class="el-breadcrumb" separator="/">
 				<el-breadcrumb-item ><i class="el-icon-share"  @click="change"></i></el-breadcrumb-item>
 				<el-breadcrumb-item v-for="(item,index)  in levelList" :key="item.path">
@@ -52,22 +52,16 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 
-.sidebar {
-height: 30px;
-}
 .el-breadcrumb {
 	padding-top: 7px;
-  //display: inline-block;
-  //font-size: 14px;
+  display: inline-block;
+  font-size: 14px;
   //line-height: 50px;
-  //margin-left:  0px;
-  //margin-top:  0px;
-  //height: 50px;
-  //background: #eef1f6;
-  //columns: #000000;
-  //width: 100%;
+  background: #eef1f6;
+  columns: #000000;
+  width: 100%;
   .no-redirect {
-     //color: #000000;
+    color: #000000;
     cursor: text;
   }
 }

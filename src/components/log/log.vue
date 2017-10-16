@@ -65,7 +65,7 @@ export default {
 </script>
 <style rel="stylesheet/scss"  lang="scss">
 .log {
-    padding-top: 10px;
+    padding: 10px 10px 10px 10px;
     .search {
         height: 45px;
     }
