@@ -1,40 +1,25 @@
-<template>
-    <!--<headers></headers>-->
-    <div class="app-wrapper" :class="{hideSidebar:!menubar}">
-    <!--
-      <aside class="db-menu-wrapper">
-          <el-menu class="db-menu-bar"  router >         
-            <template v-for="route in $router.options.routes">
-              <template v-if="route.children && route.name">
-                <el-submenu :index="route.name">
-                  <template slot="title">{{route.name}}</template>
-                  <el-menu-item :index="cRoute.name" v-for="(cRoute ,index) in route.children" :route="cRoute" :key="index">
-                    <i :class="route.icon"></i>
-                    {{cRoute.name}}</el-menu-item>
-                </el-submenu>
-              </template>
-              <template v-if="!route.children && route.name">
-                <el-menu-item :index="route.name" :route="route">  <i :class="route.icon"></i> {{route.name}}</el-menu-item>                 
-              </template>              
-            </template>           
-          </el-menu>        
-      </aside>
-      -->
-      <menubar  class="sidebar-container"  ></menubar>
-       <!-- content start -->
-        <div class="main-container">
-           <sidebar></sidebar>        
-           <router-view></router-view>
-        </div>
-        <!-- content end -->     
-    </div>     
+<template> 
+  <div>
+    <!--header-->
+    <headers></headers>
+    <!-- --> 
+    <div class="app-wrapper" :class="{hideSidebar:!menubar_Collapse}">
+      <!--左侧工具栏-->
+      <menubar  class="sidebar-container"  ></menubar>      
+      <div class="main-container">
+        <!-- 面包屑 -->
+        <sidebar></sidebar>
+        <!-- body 内容-->        
+        <router-view></router-view>
+      </div>   
+    </div>  
+  </div>   
 </template>
 
 <script>
 import sidebar from '@/components/sidebar/sidebar'
 import menubar from '@/components/menubar/menubar'
 import headers from './components/header/header'
-//import test from './components/test/test'
 export default {
   name: app,
   data() {
@@ -49,7 +34,7 @@ export default {
     menubar
   },
   computed:{
-    menubar() {
+    menubar_Collapse() {
       return this.$store.state.adminleftnavnum;
     }
   }
@@ -58,10 +43,10 @@ export default {
 <style rel="stylesheet/scss"  lang="scss" scoped>
 @import "src/styles/mixin.scss";
 .app-wrapper {
-		@include clearfix;
+		//@include clearfix;
 		position: relative;
+    //position: fixed;    
 		height: 100%;
-		width: 100%;
 		&.hideSidebar {
 			.sidebar-container{
 				width:46px;
@@ -73,10 +58,10 @@ export default {
 		}
 		.sidebar-container {
 			transition: width 0.28s ease-out;
+      top: 50px;
 			width: 180px;
 			height: 100%;
 			position: fixed;
-			top: 0;
 			bottom: 0;
 			left: 0;
 			z-index: 1001;
@@ -84,6 +69,7 @@ export default {
  			&::-webkit-scrollbar {display:none}
 		}
 		.main-container {
+      padding-top:  50px;
 			min-height: 100%;
 			transition: margin-left 0.28s ease-out;
 			margin-left: 180px;

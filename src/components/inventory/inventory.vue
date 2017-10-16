@@ -13,10 +13,10 @@
                 </el-select>
             </template>
         </el-form-item>
-        <el-form-item label="栏位："> 
+        <el-form-item label="操作："> 
             <template>
-                <el-select v-model="operate" placeholder="栏位">
-                    <el-option
+                <el-select v-model="operate" placeholder="操作" >
+                    <el-option 
                         key="1"
                         label="似"
                         value="like">

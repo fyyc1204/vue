@@ -28,6 +28,41 @@ let  routes= [
       component: navigate
     },
     {
+      path: '/log',
+      name: '日志',
+      //redirect: '/log',
+      icon: 'el-icon-edit',
+      component: log
+    },
+    {
+      path: '/charts',
+      name: '图表',
+      //redirect: '/charts',
+      icon: 'el-icon-edit',
+      component: charts
+    },
+    {
+      path: '/download',
+      name: '下载',
+      //redirect: '/download',
+      icon: 'el-icon-edit',
+      component: download
+    },
+    {
+      path: '/manager',
+      name: '管理',
+      //redirect: '/manager',
+      icon: 'el-icon-edit',
+      component: manager
+    },
+    {
+      path: '/iphelper',
+      name: 'IP地址管理',
+      //redirect: '/test',
+      icon: 'el-icon-document',
+      component: iphelper
+    },
+    {
       path: '/hello',
       name: 'hello',
       //redirect: '/hello',
@@ -72,41 +107,6 @@ let  routes= [
       ]
 
     },
-    {
-      path: '/log',
-      name: '日志',
-      //redirect: '/log',
-      icon: 'el-icon-edit',
-      component: log
-    },
-    {
-      path: '/charts',
-      name: '图表',
-      //redirect: '/charts',
-      icon: 'el-icon-edit',
-      component: charts
-    },
-    {
-      path: '/download',
-      name: '下载',
-      //redirect: '/download',
-      icon: 'el-icon-edit',
-      component: download
-    },
-    {
-      path: '/manager',
-      name: '管理',
-      //redirect: '/manager',
-      icon: 'el-icon-edit',
-      component: manager
-    },
-    {
-      path: '/iphelper',
-      name: 'IP地址管理',
-      //redirect: '/test',
-      icon: 'el-icon-document',
-      component: iphelper
-    }
   ]
 
 export default routes;

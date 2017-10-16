@@ -30,20 +30,21 @@ export default {
                 {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
                 {name:"公司网站",url:"http://www.yfgt.cn/",img:"../../../static/baiduzhongban-4.gif"},
                 {name:"公司网站后台",url:"http://www.yfgt.cn/yfm/login.jsp",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"联通OA",url:"http://oa.yfgt.com:8080/oa/",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"ERP监控页面",url:"http://erp.yfgt.com/erp/html/monitor.html",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"资金中心NC",url:"http://192.168.43.192:633/index.jsp",img:"../../../static/baiduzhongban-4.gif"},
                 {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"电商主页",url:"http://192.168.100.202/index.shtml",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"网管",url:"http://192.168.100.100:8080",img:"../../../static/baiduzhongban-4.gif"},
                 {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-                {name:"TS3310管理页面",url:"http://192.168.10.34/",img:"../../../static/baiduzhongban-4.gif"},
-
+                {name:"EMS主页",url:"http://192.168.102.120/ems/login/index.jsp",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"华为虚拟机刀箱管理页面",url:"https://192.168.2.3/",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"WI虚拟桌面登陆地址",url:"https://192.168.102.40/pages/login.do",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"FA--管理页面",url:"https://192.168.102.33:8448",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"FC--管理页面",url:"https://192.168.102.30",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"Rainbow--FC虚拟机迁移",url:"https://192.168.102.132:8443/hConvertor/",img:"../../../static/baiduzhongban-4.gif"},
+                {name:"rabbitMQ",url:"http://192.168.102.134:15672/",img:"../../../static/baiduzhongban-4.gif"},
+                
             ]
         }
 
